@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>لوحة ربط واتساب - B7R CODE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #dc3545;      /* أحمر */
+      --secondary-color: #ffffff;
+      --text-color: #f0f0f0;
+      --background-color: #0a0a0a;
+      --hover-color: #1f1f1f;
+      --border-color: #333333;
+      --card-bg: #111111;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Tahoma', 'Inter', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 35px -8px rgba(0,0,0,0.5);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.2rem;
+        border-radius: 20px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .container {
+        padding: 1rem;
+      }
+      .logo {
+        width: 65px;
+        height: 65px;
+        font-size: 1.8rem;
+      }
+      .title {
+        font-size: 1.5rem;
+      }
+      .toggle-option {
+        font-size: 0.8rem;
+        padding: 8px 0;
+      }
+      .generate-btn, .copy-btn {
+        padding: 10px;
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: white;
+      box-shadow: 0 4px 15px rgba(220,53,69,0.3);
+      transition: transform 0.2s;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+      color: var(--primary-color);
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: #aaaaaa;
+      margin-bottom: 1.2rem;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-icons a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .social-icons a.youtube { background: #FF0000; }
+    .social-icons a.telegram { background: #0088cc; }
+    .social-icons a.whatsapp { background: #25D366; }
+    .social-icons a.github { background: #333; }
+
+    .social-icons a:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+
+    /* Toggle Switch */
+    .toggle-container {
+      display: flex;
+      background: var(--hover-color);
+      border-radius: 60px;
+      padding: 4px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .toggle-option {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      cursor: pointer;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      color: #aaaaaa;
+    }
+
+    .toggle-option i {
+      margin-left: 6px;
+    }
+
+    .toggle-option.active {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 2px 8px rgba(220,53,69,0.4);
+    }
+
+    .input-group {
+      margin-bottom: 1.3rem;
+      transition: all 0.2s;
+    }
+
+    .input-group.hidden {
+      display: none;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #cccccc;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px 15px;
+      background: #1a1a1a;
+      border: 1.5px solid var(--border-color);
+      border-radius: 16px;
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(220,53,69,0.2);
+    }
+
+    .generate-btn {
+      width: 100%;
+      background: var(--primary-color);
+      border: none;
+      border-radius: 40px;
+      padding: 14px;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .generate-btn:hover {
+      background: #b71c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(220,53,69,0.4);
+    }
+
+    .generate-btn.hidden {
+      display: none;
+    }
+
+    .code-display {
+      background: var(--hover-color);
+      padding: 14px;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-color);
+      word-break: break-word;
+    }
+
+    .qr-display {
+      background: var(--hover-color);
+      padding: 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-color);
+      display: none;
+    }
+
+    .qr-image {
+      max-width: 100%;
+      height: auto;
+      max-height: 250px;
+      margin-bottom: 1rem;
+      border-radius: 16px;
+    }
+
+    .qr-instructions {
+      font-size: 0.8rem;
+      color: #bbbbbb;
+    }
+
+    .success-message {
+      color: #2ecc71;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .loading i {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .copy-btn {
+      width: 100%;
+      background: transparent;
+      border: 1.5px solid var(--primary-color);
+      border-radius: 40px;
+      padding: 12px;
+      color: var(--primary-color);
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: #777777;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo"><i class="fas fa-skull"></i></div>
+    <h1 class="title">B7R CODE &lt;\&gt;</h1>
+    <p class="subtitle">سريع • بسيط • امن</p>
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@0B77R?sub_confirmation=1" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+      <a href="https://t.me/i0_EZ" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a href="https://whatsapp.com/channel/0029Va8Y2DcLY6dENF4Jry0u" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://github.com/B7R-X" target="_blank" class="github"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+
+  <!-- Toggle Switch -->
+  <div class="toggle-container">
+    <div class="toggle-option active" data-mode="pair">
+      <i class="fas fa-key"></i> الربط مع كود
+    </div>
+    <div class="toggle-option" data-mode="qr">
+      <i class="fas fa-qrcode"></i> ربط مع QR
+    </div>
+  </div>
+
+  <div class="input-group" id="inputGroup">
+    <label class="input-label">ادخل رقم هاتف مع رمز الدولة بدون "+"</label>
+    <input type="tel" id="mobileNumber" class="input-field" placeholder="201XXXXXXX">
+  </div>
+
+  <button class="generate-btn" id="submit">
+    <i class="fas fa-key"></i> انشاء كود
+  </button>
+
+  <div class="loading" id="loading">
+    <i class="fas fa-spinner"></i>
+  </div>
+
+  <div class="code-display" id="codeDisplay">
+    الكود سيظهر هنا
+  </div>
+
+  <div class="qr-display" id="qrDisplay">
+    <img id="qrImage" class="qr-image" src="" alt="QR Code">
+    <div class="qr-instructions" id="qrInstructions">
+      امسح هذا الرمز للربط
+    </div>
+  </div>
+
+  <button class="copy-btn" id="copy">
+    <i class="fas fa-copy"></i> نسخ الكود
+  </button>
+
+  <div class="footer">
+    <p>© 2026 DEV B7R | REM BOT</p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+<script>
+  let currentMode = 'pair';
+
+  // Toggle functionality
+  document.querySelectorAll('.toggle-option').forEach(option => {
+    option.addEventListener('click', function() {
+      const mode = this.dataset.mode;
+      if (mode === currentMode) return;
+
+      document.querySelectorAll('.toggle-option').forEach(opt => opt.classList.remove('active'));
+      this.classList.add('active');
+      currentMode = mode;
+
+      const submitBtn = document.getElementById('submit');
+      const inputGroup = document.getElementById('inputGroup');
+
+      if (mode === 'pair') {
+        submitBtn.innerHTML = '<i class="fas fa-key"></i> انشاء كود';
+        submitBtn.classList.remove('hidden');
+        inputGroup.classList.remove('hidden');
+        document.getElementById('codeDisplay').style.display = 'flex';
+        document.getElementById('qrDisplay').style.display = 'none';
+        document.getElementById('codeDisplay').innerHTML = 'الكود سيظهر هنا';
+      } else {
+        submitBtn.classList.add('hidden');
+        inputGroup.classList.add('hidden');
+        generateQRCode();
+      }
+    });
+  });
+
+  async function generateQRCode() {
+    const codeDisplay = document.getElementById("codeDisplay");
+    const qrDisplay = document.getElementById("qrDisplay");
+    const loadingSpinner = document.getElementById("loading");
+
+    loadingSpinner.style.display = "block";
+    codeDisplay.style.display = 'none';
+    qrDisplay.style.display = 'none';
+
+    try {
+      const response = await axios('/qr');
+      if (response.data.qr) {
+        document.getElementById('qrImage').src = response.data.qr;
+        document.getElementById('qrInstructions').innerHTML = response.data.instructions.join('<br>');
+        qrDisplay.style.display = 'block';
+      } else {
+        codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> فشل في توليد QR</div>';
+        codeDisplay.style.display = 'flex';
+      }
+    } catch (error) {
+      console.error("Error generating QR code:", error);
+      codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> فشل في جلب QR حاول لاحقا.</div>';
+      codeDisplay.style.display = 'flex';
+    } finally {
+      loadingSpinner.style.display = "none";
+    }
+  }
+
+  document.getElementById("submit").addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const mobileNumberInput = document.getElementById("mobileNumber");
+    const codeDisplay = document.getElementById("codeDisplay");
+    const qrDisplay = document.getElementById("qrDisplay");
+    const loadingSpinner = document.getElementById("loading");
+
+    const mobileNumber = mobileNumberInput.value.trim();
+    if (!mobileNumber) {
+      codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> ادخل رقم هاتفك</div>';
+      codeDisplay.style.display = 'flex';
+      return;
+    }
+
+    loadingSpinner.style.display = "block";
+    codeDisplay.innerHTML = '';
+    qrDisplay.style.display = 'none';
+
+    try {
+      const response = await axios(`/pair?number=${mobileNumber.replace(/[^0-9]/g, "")}`);
+      const code = response.data.code || "Service Unavailable";
+      if (code === "Service Unavailable") {
+        codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Service Unavailable</div>';
+      } else {
+        codeDisplay.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> CODE: ${code}</div>`;
+      }
+      codeDisplay.style.display = 'flex';
+    } catch (error) {
+      console.error("Error generating code:", error);
+      codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Error generating code. Please try again.</div>';
+      codeDisplay.style.display = 'flex';
+    } finally {
+      loadingSpinner.style.display = "none";
+    }
+  });
+
+  function copyCode() {
+    const codeDiv = document.getElementById("codeDisplay");
+    let codeText = codeDiv.innerText;
+    // استخراج الكود من النص (بغض النظر عن وجود CODE: أو بالعربية)
+    let match = codeText.match(/CODE:\s*(\S+)/);
+    if (!match) match = codeText.match(/الرمز:\s*(\S+)/);
+    if (!match) match = codeText.match(/(\d{6,})/); // أي أرقام
+    const code = match ? match[1] : codeText.replace('CODE:', '').trim();
+
+    navigator.clipboard.writeText(code).then(() => {
+      const copyBtn = document.getElementById("copy");
+      const originalText = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<i class="fas fa-check"></i> تم النسخ!';
+      setTimeout(() => {
+        copyBtn.innerHTML = originalText;
+      }, 2000);
+    }).catch(err => {
+      console.error("Failed to copy text: ", err);
+      alert("اضغط Ctrl+C لنسخ الكود يدوياً");
+    });
+  }
+
+  document.getElementById("copy").addEventListener("click", copyCode);
+</script>
+</body>
+</html>
